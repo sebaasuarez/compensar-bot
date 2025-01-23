@@ -1,0 +1,73 @@
+@use '@angular/material' as mat;
+
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+$custom-primary-palette: mat.define-palette((
+  50: #ffe6e0,
+  100: #ffc6b8,
+  200: #ffa189,
+  300: #ff7d59,
+  400: #ff5e38,
+  500: #ea5934, /* color principal */
+  600: #dc4420,
+  700: #c53a1a,
+  800: #ac3215,
+  900: #8a2710,
+  A100: #ffffff,
+  A200: #ffd8cc,
+  A400: #ffb4a4,
+  A700: #ff9b89,
+  /* Contraste (texto) blanco/negro según el tono */
+  contrast: (
+    50: #000000,
+    100: #000000,
+    200: #000000,
+    300: #000000,
+    400: #ffffff,
+    500: #ffffff,
+    600: #ffffff,
+    700: #ffffff,
+    800: #ffffff,
+    900: #ffffff,
+    A100: #000000,
+    A200: #000000,
+    A400: #000000,
+    A700: #000000
+  )
+));
+
+/* Para el color accent y warn, 
+   podemos tomar paletas predefinidas de Angular Material, 
+   o crearlas de forma similar. */
+$my-accent-palette: mat.define-palette(mat.$pink-palette, A200);
+$my-warn-palette: mat.define-palette(mat.$red-palette);
+
+/* Definimos nuestro 'light theme' */
+$my-theme: mat.define-light-theme((
+  color: (
+    primary: $custom-primary-palette,
+    accent: $my-accent-palette,
+    warn: $my-warn-palette
+  ),
+));
+
+html .mat-mdc-fab.mat-accent, html .mat-mdc-mini-fab.mat-accent {
+  background-color: #ea5934;
+}
+.mat-mdc-card-header .mat-mdc-card-header-text .mat-mdc-card-title {
+  display: flex;
+  align-items: center;
+}
+
+.mat-mdc-card-header {
+  align-items: center;
+}
+
+/* 3) Generar las clases CSS para todos los componentes 
+   (botones, inputs, cards, etc.) basados en $my-theme. */
+@include mat.all-component-themes($my-theme);
+
+/* 4) (Opcional) Generar clases de “theming” que respondan a .dark-theme o similar. */

@@ -1,0 +1,20 @@
+{
+    "responses": [
+      {
+        "intents": ["hola", "buen dia", "buenas", "hi", "hello"],
+        "botReply": "¡Hola! Soy el renovado asistente virtual de Compensar, ahora más inteligente y listo para ayudarte con tus cursos, horarios y más. ¿Cómo puedo asistirte hoy?"
+      },
+      {
+        "intents": ["puedes decirme que cursos tengo registrados este semestre?", "cursos registrados"],
+        "botReply": "A la fecha tienes registrados los siguientes cursos: 1. Matemáticas Avanzadas (lunes y miércoles, 10:00 a.m. - 12:00 p.m.) 2. Introducción a la Programación (martes y jueves, 2:00 p.m. - 4:00 p.m.)"
+      },
+      {
+        "intents": ["puedes decirme que cursos tengo registrados este semestre?", "¿para que sirve este demo?"],
+        "botReply": "Este es un chatbot de demostración. La versión 1.0 maneja un flujo básico."
+      },
+      {
+        "intents": ["adios", "chao", "nos vemos"],
+        "botReply": "Hasta pronto. ¡Que tengas un excelente día!"
+      }
+    ]
+  }

@@ -1,0 +1,62 @@
+<img src="../../assets/home-desktop.png" width="100%" alt="">
+<!-- Botón flotante en la parte inferior derecha -->
+<button
+  mat-fab
+  class="chat-fab-button"
+  (click)="toggleChat()"
+>
+  <mat-icon>chat</mat-icon>
+</button>
+
+
+<!-- Contenedor del chat, que se muestra/oculta según isChatOpen -->
+<div class="chatbot-container" [class.open]="isChatOpen">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <!-- <mat-icon>chat_bubble_outline</mat-icon> -->
+        Asistente UCompensar
+      </mat-card-title>
+
+      <div class="header-buttons">
+        <button mat-icon-button (click)="increaseFont()">
+          <mat-icon>zoom_in</mat-icon>
+        </button>
+        <button mat-icon-button (click)="decreaseFont()">
+          <mat-icon>zoom_out</mat-icon>
+        </button>
+        <button mat-icon-button (click)="closeChat()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+    </mat-card-header>
+  
+    <mat-card-content class="chatbot-messages" [ngStyle]="{'font-size.px': chatFontSize}">
+      <div *ngFor="let msg of messages" [ngClass]="msg.sender">
+        <span>{{ msg.text }}</span>
+      </div>
+    </mat-card-content>
+  
+    <mat-card-actions class="chatbot-actions">
+      <mat-form-field class="chatbot-input" appearance="outline">
+        <mat-label>Mensaje</mat-label>
+        <input
+          matInput
+          [(ngModel)]="userInput"
+          (keydown.enter)="sendMessage()"
+        />
+      </mat-form-field>
+  
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="sendMessage()"
+        [disabled]="isLoading || !userInput.trim()"
+      >
+        <mat-icon *ngIf="!isLoading">enviado</mat-icon>
+        <span *ngIf="isLoading">Enviando...</span>
+        <span *ngIf="!isLoading">Enviar</span>
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

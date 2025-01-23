@@ -1,0 +1,121 @@
+/* === Botón flotante en esquina inferior derecha === */
+.chat-fab-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 2000;
+}
+
+/* === Contenedor del chat (flotante) === */
+.chatbot-container {
+  position: fixed;
+  bottom: 0;   /* un poco arriba del botón flotante */
+  right: 20px;
+  
+  /* Para ser responsive, usamos un ancho y alto relativo */
+  width: 90vw;         /* 90% del ancho de la ventana */
+  max-width: 400px;    /* pero no más de 400px */
+  height: 80vh;        /* 80% de la altura de la ventana */
+  max-height: 600px;   /* pero no más de 600px */
+
+  display: flex;
+  flex-direction: column;
+  transform: translateY(110%);
+  transition: transform 0.3s ease;
+  z-index: 1500;
+
+  &.open {
+    transform: translateY(-80px);
+  }
+
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
+
+/* 
+ * === Ajustes de responsividad extra con media queries ===
+ * Si quieres refinar aún más la vista en pantallas muy pequeñas:
+ */
+@media (max-width: 480px) {
+  .chatbot-container {
+    bottom: 70px;
+    right: 10px;
+    width: calc(100vw - 20px);  /* 100% ancho - margencito */
+    height: calc(100vh - 100px); /* Ajustamos la altura */
+    max-width: none;  /* sin límite, se expandirá casi al 100% */
+    max-height: none; 
+  }
+}
+
+/* === Sección de mensajes y acciones (tus estilos previos) === */
+
+.chatbot-messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 8px;
+
+  .user {
+    text-align: right;
+    margin: 4px;
+
+    span {
+      background-color: #e0f7fa;
+      padding: 6px 10px;
+      border-radius: 16px;
+      display: inline-block;
+      max-width: 70%;
+      color: #333;
+    }
+  }
+
+  .bot {
+    text-align: left;
+    margin: 4px;
+
+    span {
+      background-color: #f1f1f1;
+      padding: 6px 10px;
+      border-radius: 16px;
+      display: inline-block;
+      max-width: 70%;
+      color: #333;
+    }
+  }
+}
+
+.chatbot-actions {
+  display: flex;
+  align-items: center;
+
+  .chatbot-input {
+    flex: 1;
+    margin-right: 8px;
+  }
+}
+
+/* === Sección de header-buttons (si lo tienes) === */
+.header-buttons {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+@media (max-width: 480px) {
+  .chatbot-container {
+    bottom: 70px;
+    right: 10px;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 100px);
+    max-width: none;
+    max-height: none;
+  }
+}
+
+.mat-mdc-focus-indicator {
+  background-color: #ff6600;
+}
